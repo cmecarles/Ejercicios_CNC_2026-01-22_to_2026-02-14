@@ -8,6 +8,8 @@ G54 ; work offset G54
 G0 Z15 ; safe Z
 G0 X0 Y0 ; start XY ; (0,0)
 
+; outer big square
+
 G0 Z2 ; approach
 
 G1 Z-1 ; 1st cutting depth, (0,0)
@@ -91,6 +93,8 @@ G1 Z-20 ; 20th cutting depth, (1,0)
 G1 Y100 ; (1,1)
 G1 X0 ; (0,1)
 G1 Y0 ; (0,0)
+
+; smaller square carved in
 
 G0 Z-15 ; safe Z
 G0 X25 Y25 ; start XY ; (0,0)
