@@ -1,0 +1,28 @@
+CNC_E00 ; 2026-01-22-T08-46 ; "First exercise, make a square."
+
+G21 ; set mm
+G90 ; absolute positioning
+G54 ; work offset G54
+G17 ; XY plane active
+
+G0 Z15; rapid to safe Z
+G0 X0 Y0 ; rapid to start XY
+
+G0 Z2 ; rapid approach Z
+
+G1 Z-1 F200 ; plunge to -1 at F200
+G1 X20 ; cut to X20
+M0 ; stop
+
+G1 Y20 ; cut to Y20
+M0 ; stop
+
+G1 X0 ; cut to X0
+M0 ; stop
+
+G1 Y0 ; cut to Y0
+M0 ; stop
+
+G0 Z15 ; retract Z
+M5 ; stop spindle
+M30 ; stop program
