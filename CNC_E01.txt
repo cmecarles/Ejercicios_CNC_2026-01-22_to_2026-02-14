@@ -1,0 +1,41 @@
+; CNC_E01 ; 2026-01-22-T10-15 ; "Make 3 layers of squares."
+
+G21 ; set mm
+G90 ; absolute positioning
+G17 ; XY plane
+G54 ; work offset G54
+
+G0 Z15 ; rapid to safe Z
+G0 X0 Y0 ; rapid to start XY
+
+M3 S10000 ; spindle 10000 rpm
+
+G0 Z2 ; rapid approach Z
+
+; layer 1
+G1 Z-1 F200 ; plunge to -1 at F200
+G1 X20 F400 ; cut to X20 at F400
+G1 Y20 ; cut to Y20
+G1 X0 ; cut to X0
+G1 Y0 ; cut to Y0
+G0 Z2 ; retract to approach Z
+
+; layer 2
+G1 Z-2 F200
+G1 X20 F400
+G1 Y20
+G1 X0
+G1 Y0
+G0 Z2
+
+; layer 3
+G1 Z-3 F200
+G1 X20 F400
+G1 Y20 
+G1 X0
+G1 Y0
+G0 Z2
+
+G0 Z15 ; retract to safe Z
+M5 ; stop spindle
+M30 ; end program
