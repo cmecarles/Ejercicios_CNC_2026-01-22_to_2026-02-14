@@ -1,0 +1,258 @@
+%
+(POCKET DEMO - CONTINUOUS STEP-DOWN)
+(UNITS: mm | MODE: absolute | PLANE: XY | WCS: G54)
+(ASSUMPTION: Z0 = TOP OF STOCK, NEGATIVE Z CUTS DOWN)
+
+G21                 (mm)
+G90                 (absolute)
+G17                 (XY plane)
+G54                 (work offset)
+G94                 (feed per minute)
+G40                 (cancel cutter comp)
+G49                 (cancel tool length comp)
+G80                 (cancel canned cycles)
+
+(--- TOOL / SPINDLE ---)
+(T1 = END MILL - DEFINE IN CONTROL)
+T1 M6               (tool change)
+S10000 M3           (spindle on CW)
+M8                  (coolant)
+
+(--- SAFE START ---)
+G0 Z15              (clearance plane)
+G0 X0 Y0            (move above big pocket start)
+G0 Z2               (approach plane above stock)
+
+(========================================================)
+( BIG SQUARE POCKET PERIMETER: 100x100 from (0,0) to (100,100) )
+( CONTINUOUS STEP-DOWN: Z -1 to Z -20, NO RAPIDS IN MATERIAL )
+( PATTERN: 3 SIDES, STEP DOWN AT CORNER, 3 SIDES, STEP DOWN, ... )
+(========================================================)
+
+G1 Z-1 F200          (plunge to first depth)
+
+(Depth -1: end at X0 Y100)
+G1 X100 F400
+G1 Y100
+G1 X0
+
+G1 Z-2 F200          (step down at current corner: X0 Y100)
+(Depth -2: end at X100 Y0)
+G1 Y0 F400
+G1 X100
+G1 Y100
+
+G1 Z-3 F200          (step down at current corner: X100 Y100)
+(Depth -3: end at X0 Y0)
+G1 X0 F400
+G1 Y0
+G1 X100
+
+G1 Z-4 F200          (step down at current corner: X100 Y0)
+(Depth -4: end at X0 Y100)
+G1 Y100 F400
+G1 X0
+G1 Y0
+
+G1 Z-5 F200          (step down at current corner: X0 Y0)
+(Depth -5: end at X0 Y100)
+G1 X100 F400
+G1 Y100
+G1 X0
+
+G1 Z-6 F200          (X0 Y100)
+G1 Y0 F400
+G1 X100
+G1 Y100
+
+G1 Z-7 F200          (X100 Y100)
+G1 X0 F400
+G1 Y0
+G1 X100
+
+G1 Z-8 F200          (X100 Y0)
+G1 Y100 F400
+G1 X0
+G1 Y0
+
+G1 Z-9 F200          (X0 Y0)
+G1 X100 F400
+G1 Y100
+G1 X0
+
+G1 Z-10 F200         (X0 Y100)
+G1 Y0 F400
+G1 X100
+G1 Y100
+
+G1 Z-11 F200         (X100 Y100)
+G1 X0 F400
+G1 Y0
+G1 X100
+
+G1 Z-12 F200         (X100 Y0)
+G1 Y100 F400
+G1 X0
+G1 Y0
+
+G1 Z-13 F200         (X0 Y0)
+G1 X100 F400
+G1 Y100
+G1 X0
+
+G1 Z-14 F200         (X0 Y100)
+G1 Y0 F400
+G1 X100
+G1 Y100
+
+G1 Z-15 F200         (X100 Y100)
+G1 X0 F400
+G1 Y0
+G1 X100
+
+G1 Z-16 F200         (X100 Y0)
+G1 Y100 F400
+G1 X0
+G1 Y0
+
+G1 Z-17 F200         (X0 Y0)
+G1 X100 F400
+G1 Y100
+G1 X0
+
+G1 Z-18 F200         (X0 Y100)
+G1 Y0 F400
+G1 X100
+G1 Y100
+
+G1 Z-19 F200         (X100 Y100)
+G1 X0 F400
+G1 Y0
+G1 X100
+
+G1 Z-20 F200         (X100 Y0)
+G1 Y100 F400
+G1 X0
+G1 Y0               (finish big pocket loop at corner)
+
+(--- RETRACT AND TRANSITION SAFELY ---)
+G0 Z15              (full retract before traverse)
+
+(========================================================)
+( SMALL SQUARE POCKET PERIMETER: 25..50 (CENTERED IN 100x100) )
+( 25..50 makes a 25x25 square; adjust if you want 20x20 etc.
+( CONTINUOUS STEP-DOWN: Z -21 to Z -40 )
+(========================================================)
+
+G0 X25 Y25          (move above small pocket start)
+G0 Z2               (approach plane)
+
+G1 Z-21 F200         (plunge to first small-pocket depth)
+
+(Depth -21: end at X25 Y50)
+G1 X50 F400
+G1 Y50
+G1 X25
+
+G1 Z-22 F200         (step down at current corner: X25 Y50)
+(Depth -22: end at X50 Y25)
+G1 Y25 F400
+G1 X50
+G1 Y50
+
+G1 Z-23 F200         (X50 Y50)
+G1 X25 F400
+G1 Y25
+G1 X50
+
+G1 Z-24 F200         (X50 Y25)
+G1 Y50 F400
+G1 X25
+G1 Y25
+
+G1 Z-25 F200         (X25 Y25)
+G1 X50 F400
+G1 Y50
+G1 X25
+
+G1 Z-26 F200         (X25 Y50)
+G1 Y25 F400
+G1 X50
+G1 Y50
+
+G1 Z-27 F200         (X50 Y50)
+G1 X25 F400
+G1 Y25
+G1 X50
+
+G1 Z-28 F200         (X50 Y25)
+G1 Y50 F400
+G1 X25
+G1 Y25
+
+G1 Z-29 F200         (X25 Y25)
+G1 X50 F400
+G1 Y50
+G1 X25
+
+G1 Z-30 F200         (X25 Y50)
+G1 Y25 F400
+G1 X50
+G1 Y50
+
+G1 Z-31 F200         (X50 Y50)
+G1 X25 F400
+G1 Y25
+G1 X50
+
+G1 Z-32 F200         (X50 Y25)
+G1 Y50 F400
+G1 X25
+G1 Y25
+
+G1 Z-33 F200         (X25 Y25)
+G1 X50 F400
+G1 Y50
+G1 X25
+
+G1 Z-34 F200         (X25 Y50)
+G1 Y25 F400
+G1 X50
+G1 Y50
+
+G1 Z-35 F200         (X50 Y50)
+G1 X25 F400
+G1 Y25
+G1 X50
+
+G1 Z-36 F200         (X50 Y25)
+G1 Y50 F400
+G1 X25
+G1 Y25
+
+G1 Z-37 F200         (X25 Y25)
+G1 X50 F400
+G1 Y50
+G1 X25
+
+G1 Z-38 F200         (X25 Y50)
+G1 Y25 F400
+G1 X50
+G1 Y50
+
+G1 Z-39 F200         (X50 Y50)
+G1 X25 F400
+G1 Y25
+G1 X50
+
+G1 Z-40 F200         (X50 Y25)
+G1 Y50 F400
+G1 X25
+G1 Y25               (finish small pocket loop)
+
+(--- END / SAFE RETRACT ---)
+G0 Z15              (clearance)
+M5                  (spindle stop)
+( M9 )              (coolant off)
+M30                 (end program)
+%
